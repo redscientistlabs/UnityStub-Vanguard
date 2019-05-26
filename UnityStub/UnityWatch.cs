@@ -24,9 +24,6 @@ namespace UnityStub
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
 
         public static bool stubInterfaceEnabled = false;
-        public static ProgressForm progressForm;
-
-
 
 
         public static void Start()
@@ -36,7 +33,6 @@ namespace UnityStub
                 RemoveDomains();
 
             DisableInterface();
-            //state = TargetType.UNFOUND;
 
             CorruptCore.EmuDirOverride = true; //allows the use of this value before vanguard is connected
 
@@ -235,42 +231,38 @@ namespace UnityStub
             return files;
         }
 
-
         internal static void KillProcess()
         {
-            if (currentFileInfo.selectedExecution == ExecutionType.EXECUTE_OTHER_PROGRAM ||
-                currentFileInfo.selectedExecution == ExecutionType.EXECUTE_WITH ||
-                currentFileInfo.selectedExecution == ExecutionType.EXECUTE_CORRUPTED_FILE)
-                if (currentFileInfo.TerminateBeforeExecution && Executor.unityExeFile != null)
+
+            if (currentFileInfo.TerminateBeforeExecution && Executor.unityExeFile != null)
+            {
+
+                string otherProgramShortFilename = Path.GetFileName(Executor.unityExeFile);
+
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "taskkill";
+                startInfo.Arguments = $"/IM \"{otherProgramShortFilename}\"";
+                startInfo.RedirectStandardOutput = true;
+                startInfo.RedirectStandardError = true;
+                startInfo.UseShellExecute = false;
+                startInfo.CreateNoWindow = true;
+
+                Process processTemp = new Process();
+                processTemp.StartInfo = startInfo;
+                processTemp.EnableRaisingEvents = true;
+                try
                 {
-
-                    string otherProgramShortFilename = Path.GetFileName(Executor.unityExeFile);
-
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                    startInfo.FileName = "taskkill";
-                    startInfo.Arguments = $"/IM \"{otherProgramShortFilename}\"";
-                    startInfo.RedirectStandardOutput = true;
-                    startInfo.RedirectStandardError = true;
-                    startInfo.UseShellExecute = false;
-                    startInfo.CreateNoWindow = true;
-
-                    Process processTemp = new Process();
-                    processTemp.StartInfo = startInfo;
-                    processTemp.EnableRaisingEvents = true;
-                    try
-                    {
-                        processTemp.Start();
-                        processTemp.WaitForExit();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-
-                    //Thread.Sleep(300);
+                    processTemp.Start();
+                    processTemp.WaitForExit();
                 }
-        }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
+
+            }
+        }
         internal static void CloseTarget(bool updateDomains = true)
         {
             if (UnityWatch.currentFileInfo.targetInterface != null)
@@ -283,23 +275,6 @@ namespace UnityStub
             if (updateDomains)
                 UpdateDomains();
         }
-
-        public static int IndexOf<T>(this T[] haystack, T[] needle)
-        {
-            if ((needle != null) && (haystack.Length >= needle.Length))
-            {
-                for (int l = 0; l < haystack.Length - needle.Length + 1; l++)
-                {
-                    if (!needle.Where((data, index) => !haystack[l + index].Equals(data)).Any())
-                    {
-                        return l;
-                    }
-                }
-            }
-
-            return -1;
-        }
-
 
         public static void UpdateDomains()
         {
@@ -333,7 +308,6 @@ namespace UnityStub
             }
         }
 
-
         public static MemoryDomainProxy[] GetInterfaces()
         {
             try
@@ -366,14 +340,13 @@ namespace UnityStub
 
         }
 
-
         public static void EnableInterface()
         {
             S.GET<StubForm>().btnResetBackup.Enabled = true;
             S.GET<StubForm>().btnRestoreBackup.Enabled = true;
+
             stubInterfaceEnabled = true;
         }
-
         public static void DisableInterface()
         {
             S.GET<StubForm>().btnResetBackup.Enabled = false;

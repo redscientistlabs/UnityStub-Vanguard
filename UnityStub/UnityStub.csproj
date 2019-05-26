@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Executor.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="UnityWatch.cs" />
     <Compile Include="StubForm.cs">
       <SubType>Form</SubType>
@@ -72,20 +71,11 @@
     </Compile>
     <Compile Include="Objects.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProgressForm.Designer.cs">
-      <DependentUpon>ProgressForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VanguardCore.cs" />
     <Compile Include="VanguiardImplementation.cs" />
     <EmbeddedResource Include="StubForm.resx">
       <DependentUpon>StubForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProgressForm.resx">
-      <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

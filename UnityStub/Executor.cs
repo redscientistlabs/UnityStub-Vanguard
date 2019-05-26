@@ -14,7 +14,6 @@ namespace UnityStub
     static class Executor
     {
         public static string unityExeFile = null;
-        public static string script = null;
 
         public static void Execute()
         {

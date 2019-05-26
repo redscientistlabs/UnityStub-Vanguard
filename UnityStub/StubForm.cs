@@ -24,7 +24,7 @@ namespace UnityStub
             SyncObjectSingleton.SyncObject = this;
 
 
-        Text += UnityWatch.UnityStubVersion;
+            Text += UnityWatch.UnityStubVersion;
 
             this.cbTargetType.Items.AddRange(new object[] {
                 TargetType.UNITYEXE_UNITYDLL,
@@ -37,36 +37,12 @@ namespace UnityStub
 
         }
 
-        private void BtnRestartStub_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-
-
         private void StubForm_Load(object sender, EventArgs e)
         {
             cbTargetType.SelectedIndex = 0;
 
             UnityWatch.Start();
         }
-
-        public void RunProgressBar(string progressLabel, int maxProgress, Action<object, EventArgs> action, Action<object, EventArgs> postAction = null)
-        {
-
-            if (UnityWatch.progressForm != null)
-            {
-                UnityWatch.progressForm.Close();
-                this.Controls.Remove(UnityWatch.progressForm);
-                UnityWatch.progressForm = null;
-            }
-
-            UnityWatch.progressForm = new ProgressForm(progressLabel, maxProgress, action, postAction);
-            UnityWatch.progressForm.Run();
-
-        }
-
-
-
 
         Size originalLbTargetSize;
         Point originalLbTargetLocation;
@@ -88,9 +64,7 @@ namespace UnityStub
             //lbTargetExecution.Enabled = true;
             //pnTargetExecution.Enabled = true;
 
-            btnRestoreBackup.Enabled = true;
-            btnResetBackup.Enabled = true;
-            btnClearAllBackups.Enabled = true;
+            UnityWatch.EnableInterface();
 
             lbTargetStatus.Text = UnityWatch.currentFileInfo.selectedTargetType.ToString() + " target loaded";
         }
@@ -136,11 +110,6 @@ namespace UnityStub
             //if(cbSelectedExecution.SelectedItem.ToString())
             UnityWatch.currentFileInfo.selectedTargetType = cbTargetType.SelectedItem.ToString();
 
-        }
-
-        private void BtnKillProcess_Click(object sender, EventArgs e)
-        {
-            UnityWatch.KillProcess();
         }
 
         private void BtnRestoreBackup_Click(object sender, EventArgs e)
@@ -222,11 +191,6 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
                 columnsMenu.Show(this, locate);
             }
-        }
-
-        private void BtnExecutionSettings_MouseDown(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void StubForm_FormClosing(object sender, FormClosingEventArgs e)
