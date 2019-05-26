@@ -149,7 +149,7 @@ namespace Vanguard
 
 
 
-        public static void RegisterCemuSpec()
+        public static void RegisterVanguardSpec()
         {
             PartialSpec emuSpecTemplate = new PartialSpec("VanguardSpec");
 
@@ -187,7 +187,7 @@ namespace Vanguard
 
             //Start everything
             VanguardImplementation.StartClient();
-            VanguardCore.RegisterCemuSpec();
+            VanguardCore.RegisterVanguardSpec();
             CorruptCore.StartEmuSide();
 
             //Refocus on Bizhawk
