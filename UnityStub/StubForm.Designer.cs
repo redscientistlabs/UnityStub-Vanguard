@@ -205,7 +205,7 @@
             this.btnClearAllBackups.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.btnClearAllBackups.FlatAppearance.BorderSize = 0;
             this.btnClearAllBackups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearAllBackups.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnClearAllBackups.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.btnClearAllBackups.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnClearAllBackups.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClearAllBackups.Location = new System.Drawing.Point(0, 142);
@@ -238,7 +238,7 @@
             this.btnRestoreBackup.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.btnRestoreBackup.FlatAppearance.BorderSize = 0;
             this.btnRestoreBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestoreBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnRestoreBackup.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.btnRestoreBackup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRestoreBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRestoreBackup.Location = new System.Drawing.Point(0, 86);
@@ -261,7 +261,7 @@
             this.btnResetBackup.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.btnResetBackup.FlatAppearance.BorderSize = 0;
             this.btnResetBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnResetBackup.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.btnResetBackup.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnResetBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetBackup.Location = new System.Drawing.Point(0, 114);
