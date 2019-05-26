@@ -1,5 +1,6 @@
 ﻿using RTCV.CorruptCore;
 using RTCV.NetCore;
+using RTCV.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,8 @@ namespace UnityStub
         private void StubForm_Load(object sender, EventArgs e)
         {
             cbTargetType.SelectedIndex = 0;
+
+            UICore.SetRTCColor(Color.Aquamarine, this);
 
             UnityWatch.Start();
         }

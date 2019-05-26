@@ -120,8 +120,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FileStubIcon.ico" />
-    <Content Include="logo.ico" />
     <Content Include="UnityStubIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
