@@ -129,6 +129,10 @@ namespace UnityStub
             }
 
             FileInfo unityExeFile = new FileInfo(filename);
+
+            UnityWatch.currentFileInfo.targetShortName = unityExeFile.Name;
+            UnityWatch.currentFileInfo.targetFullName = unityExeFile.FullName;
+
             DirectoryInfo unityFolder = unityExeFile.Directory;
 
             var allFiles = DirSearch(unityFolder.FullName).ToArray();
