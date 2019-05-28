@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2ACB6EE7-DF56-4B84-857C-535F75CE0CA8}</ProjectGuid>
+    <ProjectGuid>{5DBF00A3-4657-4102-94CA-FE69F461BE82}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>UnityStub</RootNamespace>
     <AssemblyName>UnityStub</AssemblyName>
