@@ -1,4 +1,4 @@
-﻿using RTCV.NetCore;
+using RTCV.NetCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
