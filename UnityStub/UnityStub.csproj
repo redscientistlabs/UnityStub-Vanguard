@@ -73,7 +73,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VanguardCore.cs" />
-    <Compile Include="VanguiardImplementation.cs" />
+    <Compile Include="VanguardImplementation.cs" />
     <EmbeddedResource Include="StubForm.resx">
       <DependentUpon>StubForm.cs</DependentUpon>
     </EmbeddedResource>

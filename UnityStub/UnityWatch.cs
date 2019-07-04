@@ -18,7 +18,7 @@ namespace UnityStub
 {
     public static class UnityWatch
     {
-        public static string UnityStubVersion = "0.0.2";
+        public static string UnityStubVersion = "0.0.3";
         public static string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
@@ -104,8 +104,8 @@ namespace UnityStub
             OpenFileDialog OpenFileDialog1;
             OpenFileDialog1 = new OpenFileDialog();
 
-            OpenFileDialog1.Title = "Open File";
-            OpenFileDialog1.Filter = "files|*.*";
+            OpenFileDialog1.Title = "Select the Game Executable";
+            OpenFileDialog1.Filter = "Executable Files|*.exe";
             OpenFileDialog1.RestoreDirectory = true;
             if (OpenFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -119,14 +119,6 @@ namespace UnityStub
             }
             else
                 return false;
-
-
-
-            if (!filename.Contains(".exe"))
-            {
-                MessageBox.Show("This is not an Executable");
-                return false;
-            }
 
             FileInfo unityExeFile = new FileInfo(filename);
 

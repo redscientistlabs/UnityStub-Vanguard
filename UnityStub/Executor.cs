@@ -18,24 +18,23 @@ namespace UnityStub
         public static void Execute()
         {
 
-                if (unityExeFile != null)
+           if (unityExeFile != null)
+           {
+
+               string fullPath = unityExeFile;
+               ProcessStartInfo psi = new ProcessStartInfo();
+               psi.FileName = Path.GetFileName(fullPath);
+               psi.WorkingDirectory = Path.GetDirectoryName(fullPath);
+
+                try
                 {
-
-                    string fullPath = unityExeFile;
-                    ProcessStartInfo psi = new ProcessStartInfo();
-                    psi.FileName = Path.GetFileName(fullPath);
-                    psi.WorkingDirectory = Path.GetDirectoryName(fullPath);
-
                     Process.Start(psi);
-
                 }
-                else
-                    MessageBox.Show("You need to specify a file to execute with the Edit Exec button.");
-                return;
-
+                catch (Exception ex) { } //Eat exceptions since weird things happen if the exe is corrupted too much
+           }
+           else
+               MessageBox.Show("You need to specify a file to execute with the Edit Exec button.");
+           return;
         }
-
     }
-
-
 }
