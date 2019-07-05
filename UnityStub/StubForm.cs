@@ -104,7 +104,8 @@ namespace UnityStub
 
         private void BtnReleaseTarget_Click(object sender, EventArgs e)
         {
-            UnityWatch.CloseTarget();
+            if(!UnityWatch.CloseTarget())
+                return;
             DisableInterface();
         }
 
@@ -198,7 +199,8 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
         private void StubForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UnityWatch.CloseTarget(false);
+            if (!UnityWatch.CloseTarget(false))
+                e.Cancel = true;
         }
     }
 }

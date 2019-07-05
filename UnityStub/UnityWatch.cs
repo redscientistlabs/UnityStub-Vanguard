@@ -18,7 +18,7 @@ namespace UnityStub
 {
     public static class UnityWatch
     {
-        public static string UnityStubVersion = "0.0.3";
+        public static string UnityStubVersion = "0.0.4";
         public static string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
@@ -37,15 +37,11 @@ namespace UnityStub
             RtcCore.EmuDirOverride = true; //allows the use of this value before vanguard is connected
 
 
-            string tempPath = Path.Combine(UnityWatch.currentDir, "TEMP");
-            string temp2Path = Path.Combine(UnityWatch.currentDir, "TEMP2");
+            string backupPath = Path.Combine(UnityWatch.currentDir, "FILEBACKUPS");
             string paramsPath = Path.Combine(UnityWatch.currentDir, "PARAMS");
 
-            if (!Directory.Exists(tempPath))
-                Directory.CreateDirectory(tempPath);
-
-            if (!Directory.Exists(temp2Path))
-                Directory.CreateDirectory(temp2Path);
+            if (!Directory.Exists(backupPath))
+                Directory.CreateDirectory(backupPath);
 
             if (!Directory.Exists(paramsPath))
                 Directory.CreateDirectory(paramsPath);
@@ -76,22 +72,28 @@ namespace UnityStub
             UpdateDomains();
         }
 
-        public static void RestoreTarget()
+        public static bool RestoreTarget()
         {
+            bool success = false;
             if (UnityWatch.currentFileInfo.autoUncorrupt)
             {
                 if (StockpileManager_EmuSide.UnCorruptBL != null)
+                {
                     StockpileManager_EmuSide.UnCorruptBL.Apply(false);
+                    success = true;
+                }
                 else
                 {
                     //CHECK CRC WITH BACKUP HERE AND SKIP BACKUP IF WORKING FILE = BACKUP FILE
-                    UnityWatch.currentFileInfo.targetInterface.ResetWorkingFile();
+                   success = UnityWatch.currentFileInfo.targetInterface.ResetWorkingFile();
                 }
             }
             else
             {
-                UnityWatch.currentFileInfo.targetInterface.ResetWorkingFile();
+                success = UnityWatch.currentFileInfo.targetInterface.ResetWorkingFile();
             }
+
+            return success;
         }
 
         internal static bool LoadTarget()
@@ -120,6 +122,9 @@ namespace UnityStub
             else
                 return false;
 
+            if (!CloseTarget(false))
+                return false;
+
             FileInfo unityExeFile = new FileInfo(filename);
 
             UnityWatch.currentFileInfo.targetShortName = unityExeFile.Name;
@@ -135,11 +140,10 @@ namespace UnityStub
                 return false;
             }
 
-            var allDllFiles = allFiles.Where(it => it.ToUpper().Contains(".DLL")).ToArray();
+            var allDllFiles = allFiles.Where(it => it.ToUpper().EndsWith(".DLL")).ToArray();
             var allUnityDllFiles = allDllFiles.Where(it => it.ToUpper().Contains("UNITY")).ToArray();
             var unityEngineDll = allDllFiles.Where(it => it.ToUpper().Contains("UNITYENGINE.DLL")).ToArray();
 
-            CloseTarget(false);
 
             List<string> targetFiles = new List<string>();
 
@@ -198,6 +202,8 @@ namespace UnityStub
             UnityWatch.currentFileInfo.targetInterface = mfi;
 
             Executor.unityExeFile = unityExeFile.FullName;
+
+            StockpileManager_EmuSide.UnCorruptBL = null;
 
             if (VanguardCore.vanguardConnected)
                 UnityWatch.UpdateDomains();
@@ -259,25 +265,29 @@ namespace UnityStub
 
             }
         }
-        internal static void CloseTarget(bool updateDomains = true)
+        internal static bool CloseTarget(bool updateDomains = true)
         {
             if (UnityWatch.currentFileInfo.targetInterface != null)
             {
-                UnityWatch.RestoreTarget();
+                if (!UnityWatch.RestoreTarget())
+                {
+                    MessageBox.Show("Unable to restore the backup. Aborting!");
+                    return false;
+                }
+                    
                 UnityWatch.currentFileInfo.targetInterface.CloseStream();
                 UnityWatch.currentFileInfo.targetInterface = null;
             }
 
             if (updateDomains)
                 UpdateDomains();
+            return true;
         }
 
         public static void UpdateDomains()
         {
             try
             {
-
-
                 PartialSpec gameDone = new PartialSpec("VanguardSpec");
                 gameDone[VSPEC.SYSTEM] = "Unity";
                 gameDone[VSPEC.GAMENAME] = UnityWatch.currentFileInfo.targetShortName;
