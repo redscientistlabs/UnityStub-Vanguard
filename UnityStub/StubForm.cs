@@ -69,6 +69,7 @@ namespace UnityStub
 
             UnityWatch.EnableInterface();
 
+            lbTarget.Text = UnityWatch.currentFileInfo.selectedTargetType.ToString() + " target loaded";
             lbTargetStatus.Text = UnityWatch.currentFileInfo.selectedTargetType.ToString() + " target loaded";
         }
 
