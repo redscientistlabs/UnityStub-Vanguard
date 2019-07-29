@@ -145,7 +145,7 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
             UnityWatch.currentFileInfo.targetInterface?.RestoreBackup();
 
-            foreach (string file in Directory.GetFiles(UnityWatch.currentDir + "\\TEMP"))
+            foreach (string file in Directory.GetFiles(Path.Combine(UnityWatch.currentDir,"FILEBACKUPS")))
             {
                 try
                 {
