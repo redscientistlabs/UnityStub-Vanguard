@@ -59,7 +59,7 @@ namespace UnityStub
                     }
 
                     //it is important that we use LoadFile here and not load from a byte array; otherwise mixed (managed/unamanged) assemblies can't load
-                    return Assembly.LoadFile(fname);
+                    return Assembly.UnsafeLoadFrom(fname);
                 }
             }
             catch (Exception e)
