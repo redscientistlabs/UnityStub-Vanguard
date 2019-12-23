@@ -18,7 +18,7 @@ namespace UnityStub
 {
     public static class UnityWatch
     {
-        public static string UnityStubVersion = "0.1.0";
+        public static string UnityStubVersion = "0.1.1";
         public static string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
