@@ -1,7 +1,7 @@
 ﻿using UnityStub;
 using RTCV.CorruptCore;
 using RTCV.NetCore;
-using RTCV.NetCore.StaticTools;
+using RTCV.Common;
 using RTCV.Vanguard;
 using System;
 using System.Collections.Generic;

@@ -14,7 +14,7 @@ using RTCV;
 using RTCV.CorruptCore;
 using static RTCV.NetCore.NetcoreCommands;
 using UnityStub;
-using RTCV.NetCore.StaticTools;
+using RTCV.Common;
 
 namespace Vanguard
 {
