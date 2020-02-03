@@ -28,7 +28,7 @@ namespace UnityStub
 
         public static void Start()
         {
-
+            RTCV.Common.Logging.StartLogging(VanguardCore.logPath);
             if (VanguardCore.vanguardConnected)
                 RemoveDomains();
 
