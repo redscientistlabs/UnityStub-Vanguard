@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vanguard;
@@ -18,7 +19,7 @@ namespace UnityStub
 {
     public static class UnityWatch
     {
-        public static string UnityStubVersion = "0.1.3";
+        public static string UnityStubVersion = "0.1.4";
         public static string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
@@ -256,6 +257,7 @@ namespace UnityStub
                 {
                     processTemp.Start();
                     processTemp.WaitForExit();
+                    Thread.Sleep(500); //Add an artificial delay as sometimes the handles aren't released immediately even though the process has terminated
                 }
                 catch (Exception ex)
                 {
