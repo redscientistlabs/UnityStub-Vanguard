@@ -19,7 +19,7 @@ namespace UnityStub
 {
     public static class UnityWatch
     {
-        public static string UnityStubVersion = "0.1.4";
+        public static string UnityStubVersion = "0.1.5";
         public static string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public static UnityStubFileInfo currentFileInfo = new UnityStubFileInfo();
@@ -237,7 +237,7 @@ namespace UnityStub
         internal static void KillProcess()
         {
 
-            if (currentFileInfo.TerminateBeforeExecution && Executor.unityExeFile != null)
+            if (Executor.unityExeFile != null)
             {
 
                 string otherProgramShortFilename = Path.GetFileName(Executor.unityExeFile);
@@ -271,6 +271,7 @@ namespace UnityStub
         {
             if (UnityWatch.currentFileInfo.targetInterface != null)
             {
+                UnityWatch.KillProcess();
                 if (!UnityWatch.RestoreTarget())
                 {
                     MessageBox.Show("Unable to restore the backup. Aborting!");

@@ -119,6 +119,7 @@ namespace UnityStub
 
         private void BtnRestoreBackup_Click(object sender, EventArgs e)
         {
+            UnityWatch.KillProcess();
             UnityWatch.currentFileInfo.targetInterface?.CloseStream();
             UnityWatch.currentFileInfo.targetInterface?.RestoreBackup();
         }

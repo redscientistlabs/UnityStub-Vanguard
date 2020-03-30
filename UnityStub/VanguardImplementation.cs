@@ -85,7 +85,8 @@ namespace Vanguard
                         break;
 
                     case REMOTE_PRECORRUPTACTION:
-                        UnityWatch.KillProcess();
+                        if(UnityWatch.currentFileInfo.TerminateBeforeExecution)
+                            UnityWatch.KillProcess();
                         UnityWatch.currentFileInfo.targetInterface.CloseStream();
                         UnityWatch.RestoreTarget();
                         break;
