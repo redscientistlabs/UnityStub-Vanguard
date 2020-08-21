@@ -2,3 +2,4 @@
 UnityStub/bin/*
 UnityStub/obj/*
 packages/*
+.vscode
