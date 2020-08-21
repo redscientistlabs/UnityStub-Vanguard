@@ -42,7 +42,7 @@ namespace UnityStub
         {
             cbTargetType.SelectedIndex = 0;
 
-            UICore.SetRTCColor(Color.Aquamarine, this);
+            Colors.SetRTCColor(Color.Aquamarine, this);
 
             UnityWatch.Start();
         }
