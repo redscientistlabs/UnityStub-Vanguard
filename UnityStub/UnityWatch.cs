@@ -78,9 +78,9 @@ namespace UnityStub
             bool success = false;
             if (UnityWatch.currentFileInfo.autoUncorrupt)
             {
-                if (StockpileManager_EmuSide.UnCorruptBL != null)
+                if (StockpileManagerEmuSide.UnCorruptBL != null)
                 {
-                    StockpileManager_EmuSide.UnCorruptBL.Apply(false);
+                    StockpileManagerEmuSide.UnCorruptBL.Apply(false);
                     success = true;
                 }
                 else
@@ -164,7 +164,7 @@ namespace UnityStub
                 case TargetType.UNITYEXE_KNOWNDLL:
                     targetFiles.Add(unityExeFile.FullName);
 
-                    var allKnownGames = allDllFiles.Where(it => 
+                    var allKnownGames = allDllFiles.Where(it =>
                     it.ToUpper().Contains("PHYSICS") ||
                     it.ToUpper().Contains("CLOTH") ||
                     it.ToUpper().Contains("ANIMATION") ||
@@ -204,7 +204,7 @@ namespace UnityStub
 
             Executor.unityExeFile = unityExeFile.FullName;
 
-            StockpileManager_EmuSide.UnCorruptBL = null;
+            StockpileManagerEmuSide.UnCorruptBL = null;
 
             if (VanguardCore.vanguardConnected)
                 UnityWatch.UpdateDomains();
@@ -277,7 +277,7 @@ namespace UnityStub
                     MessageBox.Show("Unable to restore the backup. Aborting!");
                     return false;
                 }
-                    
+
                 UnityWatch.currentFileInfo.targetInterface.CloseStream();
                 UnityWatch.currentFileInfo.targetInterface = null;
             }
@@ -304,10 +304,10 @@ namespace UnityStub
                 AllSpec.VanguardSpec.Update(gameDone);
 
                 //This is local. If the domains changed it propgates over netcore
-                LocalNetCoreRouter.Route(NetcoreCommands.CORRUPTCORE, NetcoreCommands.REMOTE_EVENT_DOMAINSUPDATED, true, true);
+                LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.CorruptCore, RTCV.NetCore.Commands.Remote.EventDomainsUpdated, true, true);
 
                 //Asks RTC to restrict any features unsupported by the stub
-                LocalNetCoreRouter.Route(NetcoreCommands.CORRUPTCORE, NetcoreCommands.REMOTE_EVENT_RESTRICTFEATURES, true, true);
+                LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.CorruptCore, RTCV.NetCore.Commands.Remote.EventRestrictFeatures, true, true);
 
             }
             catch (Exception ex)
