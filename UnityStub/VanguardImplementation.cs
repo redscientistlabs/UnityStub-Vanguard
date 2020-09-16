@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RTCV;
 using RTCV.CorruptCore;
-using static RTCV.NetCore.NetcoreCommands;
 using UnityStub;
 using RTCV.Common;
 
