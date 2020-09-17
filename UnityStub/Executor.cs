@@ -30,7 +30,7 @@ namespace UnityStub
                 {
                     Process.Start(psi);
                 }
-                catch (Exception ex) { } //Eat exceptions since weird things happen if the exe is corrupted too much
+                catch (Exception) { } //Eat exceptions since weird things happen if the exe is corrupted too much
            }
            else
                MessageBox.Show("You need to specify a file to execute with the Edit Exec button.");
