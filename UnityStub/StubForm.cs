@@ -176,7 +176,7 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
                 ((ToolStripMenuItem)columnsMenu.Items.Add("Big endian", null, new EventHandler((ob, ev) => {
 
-                    UnityWatch.currentFileInfo.bigEndian = !UnityStub.UnityWatch.currentFileInfo.bigEndian;
+                    UnityWatch.currentFileInfo.bigEndian = !UnityWatch.currentFileInfo.bigEndian;
 
                     if (VanguardCore.vanguardConnected)
                         UnityWatch.UpdateDomains();
