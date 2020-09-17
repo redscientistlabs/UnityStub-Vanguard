@@ -162,8 +162,8 @@ namespace Vanguard
             if (VanguardCore.attached)
                 RTCV.Vanguard.VanguardConnector.PushVanguardSpecRef(AllSpec.VanguardSpec);
 
-            LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.CorruptCore, RTCV.NetCore.Commands.Remote.PushVanguardSpec, emuSpecTemplate, true);
-            LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.UI, RTCV.NetCore.Commands.Remote.PushVanguardSpec, emuSpecTemplate, true);
+            LocalNetCoreRouter.Route(RTCV.NetCore.Endpoints.CorruptCore, RTCV.NetCore.Commands.Remote.PushVanguardSpec, emuSpecTemplate, true);
+            LocalNetCoreRouter.Route(RTCV.NetCore.Endpoints.UI, RTCV.NetCore.Commands.Remote.PushVanguardSpec, emuSpecTemplate, true);
 
 
             AllSpec.VanguardSpec.SpecUpdated += (o, e) =>
@@ -171,8 +171,8 @@ namespace Vanguard
                 PartialSpec partial = e.partialSpec;
 
 
-                LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.CorruptCore, RTCV.NetCore.Commands.Remote.PushVanguardSpecUpdate, partial, true);
-                LocalNetCoreRouter.Route(RTCV.NetCore.Commands.Basic.UI, RTCV.NetCore.Commands.Remote.PushVanguardSpecUpdate, partial, true);
+                LocalNetCoreRouter.Route(RTCV.NetCore.Endpoints.CorruptCore, RTCV.NetCore.Commands.Remote.PushVanguardSpecUpdate, partial, true);
+                LocalNetCoreRouter.Route(RTCV.NetCore.Endpoints.UI, RTCV.NetCore.Commands.Remote.PushVanguardSpecUpdate, partial, true);
             };
         }
 
